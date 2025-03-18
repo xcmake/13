@@ -3,302 +3,205 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>现代展示页</title>
+    <title>未来科技展示页</title>
     <style>
         :root {
-            --primary-color: #2a5ae6;
-            --secondary-color: #ffd700;
-            --accent-color: #ff6b6b;
-            --background-color: #f5f7fb;
+            --primary-color: #2c3a47;
+            --secondary-color: #3498db;
+            --accent-color: #f1c40f;
+            --background-color: #1a1a1a;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
         }
 
         body {
-            line-height: 1.6;
-            color: #333;
-            background-color: var(--background-color);
+            background: var(--background-color);
+            color: white;
+            overflow-x: hidden;
         }
 
-        /* 导航栏样式 */
-        .navbar {
-            padding: 1rem 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        /* 动态粒子背景 */
+        .particles {
             position: fixed;
-            width: 100%;
             top: 0;
-            background: rgba(255, 255, 255, 0.95);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            z-index: 1000;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
         }
 
-        .brand {
-            font-size: 1.5rem;
-            color: var(--primary-color);
+        .particle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: var(--secondary-color);
+            border-radius: 50%;
+            animation: particleAnim 1.5s infinite linear;
         }
 
-        .nav-links {
-            display: flex;
-            gap: 2rem;
+        @keyframes particleAnim {
+            0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
         }
 
-        .nav-links a {
-            text-decoration: none;
-            color: #333;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary-color);
-        }
-
-        /* 主要内容容器 */
+        /* 3D容器 */
         .container {
             max-width: 1200px;
-            margin: 80px auto 100px;
+            margin: 0 auto;
             padding: 0 5%;
+            perspective: 1000px;
         }
 
-        /* 英雄区域 */
-        .hero {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            padding: 0 5%;
-            color: white;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-content {
-            max-width: 600px;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
-            line-height: 1.2;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-        }
-
-        .hero-btn {
-            display: inline-block;
-            padding: 1rem 2rem;
-            background: var(--accent-color);
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: transform 0.3s ease;
-        }
-
-        .hero-btn:hover {
-            transform: translateY(-3px);
-        }
-
-        /* 特色功能区 */
-        .features {
-            background: white;
-            padding: 5rem 5%;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-
-        .feature-card {
+        /* 卡片容器 */
+        .card-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
+            padding: 5rem 0;
+        }
+
+        /* 3D卡片效果 */
+        .card {
+            position: relative;
             padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .feature-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: var(--accent-color);
-        }
-
-        /* 客户评价 */
-        .testimonials {
-            padding: 5rem 5%;
-            background: #f8f9fa;
-        }
-
-        .testimonial-card {
-            max-width: 600px;
-            margin: 2rem auto;
-            padding: 2rem;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-
-        .testimonial-author {
-            font-size: 1.1rem;
-            margin-bottom: 1rem;
-            color: #666;
-        }
-
-        /* 联系方式 */
-        .contact {
-            padding: 5rem 5%;
-            background: white;
-        }
-
-        .contact-form {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        input, textarea {
-            width: 100%;
-            padding: 1rem;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-
-        button {
             background: var(--primary-color);
-            color: white;
-            padding: 1rem 2rem;
-            border: none;
-            border-radius: 5px;
+            border-radius: 15px;
             cursor: pointer;
-            font-size: 1rem;
+            transform-style: preserve-3d;
+            transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .card:hover {
+            transform: translateY(-15px) rotateY(5deg);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        /* 内容区域 */
+        .card-front,
+        .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 15px;
+            font-size: 1.5rem;
+        }
+
+        .card-front {
+            background: var(--secondary-color);
+            transform: rotateY(0deg);
+        }
+
+        .card-back {
+            background: var(--accent-color);
+            transform: rotateY(180deg);
+        }
+
+        /* 进度指示器 */
+        .progress-container {
+            height: 5px;
+            background: #333;
+            border-radius: 2.5px;
+            margin: 2rem 0;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #3498db, #8e44ad);
+            transition: width 0.6s ease;
         }
 
         /* 响应式设计 */
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .nav-links {
-                display: none;
+            .card {
+                padding: 1rem;
             }
         }
 
         @media (max-width: 480px) {
-            .hero h1 {
-                font-size: 2rem;
+            .container {
+                padding: 0 3%;
             }
-        }
-
-        /* 动画 */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .fadeIn-up {
-            animation: fadeInUp 1s ease-out;
         }
     </style>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="brand">Your Brand</div>
-        <div class="nav-links">
-            <a href="#home">首页</a>
-            <a href="#services">服务</a>
-            <a href="#about">关于</a>
-            <a href="#contact">联系</a>
-        </div>
-    </nav>
+    <div class="particles"></div>
 
-    <section class="hero" id="home">
-        <div class="container hero-content fadeIn-up">
-            <h1>欢迎来到我们的世界</h1>
-            <p>我们专注于提供创新的解决方案和卓越的客户服务，帮助您的业务成长。</p>
-            <a href="#contact" class="hero-btn">立即联系我们</a>
-        </div>
-    </section>
+    <div class="container">
+        <h1 style="text-align: center; text-shadow: 0 0 10px rgba(52, 152, 219, 0.5);">
+            探索未来科技
+        </h1>
 
-    <section class="features">
-        <div class="container">
-            <h2>我们的核心优势</h2>
-            <div class="feature-card fadeIn-up">
-                <div class="feature-icon">💡</div>
-                <h3>创新解决方案</h3>
-                <p>我们采用最新的技术和创新方法，为您提供定制化的解决方案。</p>
-            </div>
-            <div class="feature-card fadeIn-up">
-                <div class="feature-icon">🛠️</div>
-                <h3>专业团队</h3>
-                <p>我们的团队由经验丰富的专业人士组成，致力于为客户提供优质服务。</p>
-            </div>
-            <div class="feature-card fadeIn-up">
-                <div class="feature-icon">📈</div>
-                <h3>卓越成果</h3>
-                <p>我们已经帮助众多客户实现了业务增长和数字化转型。</p>
-            </div>
+        <div class="progress-container">
+            <div class="progress-bar" style="width: 0%"></div>
         </div>
-    </section>
 
-    <section class="testimonials">
-        <div class="container">
-            <h2>客户评价</h2>
-            <div class="testimonial-card fadeIn-up">
-                <p>"这家公司真正理解我们的需求，并提供了超出预期的解决方案。"</p>
-                <div class="testimonial-author">
-                    —— 张三，某科技公司CEO
-                </div>
-            </div>
-            <div class="testimonial-card fadeIn-up">
-                <p>"从初次接触到项目完成，他们的专业性和响应速度都令人印象深刻。"</p>
-                <div class="testimonial-author">
-                    —— 李四，初创企业创始人
-                </div>
-            </div>
+        <div class="card-container" id="cardsContainer">
+            <!-- 卡片数据将通过JavaScript动态生成 -->
         </div>
-    </section>
+    </div>
 
-    <section class="contact">
-        <div class="container">
-            <h2>联系我们</h2>
-            <form class="contact-form" action="#" method="POST">
-                <div class="form-group">
-                    <input type="text" placeholder="您的姓名" required>
-                </div>
-                <div class="form-group">
-                    <input type="email" placeholder="您的邮箱" required>
-                </div>
-                <div class="form-group">
-                    <textarea placeholder="您的消息..." rows="4" required></textarea>
-                </div>
-                <button type="submit">发送消息</button>
-            </form>
-        </div>
-    </section>
+    <script>
+        // 动态生成卡片内容
+        const cardData = [
+            {
+                front: "🚀 量子计算",
+                back: "突破经典计算极限的新一代计算技术"
+            },
+            {
+                front: "🌐 区块链网络",
+                back: "去中心化安全数据解决方案"
+            },
+            {
+                front: "🤖 人工智能",
+                back: "智能决策与自动化系统"
+            },
+            {
+                front: "📡 5G通信",
+                back": "超高速无线通信技术"
+            }
+        ];
+
+        const container = document.getElementById('cardsContainer');
+
+        cardData.forEach(item => {
+            const card = document.createElement('div');
+            card.className = 'card';
+            
+            const front = document.createElement('div');
+            front.className = 'card-front';
+            front.textContent = item.front;
+            
+            const back = document.createElement('div');
+            back.className = 'card-back';
+            back.textContent = item.back;
+
+            card.appendChild(front);
+            card.appendChild(back);
+            container.appendChild(card);
+        });
+
+        // 进度动画
+        const progressBar = document.querySelector('.progress-bar');
+        let width = 0;
+        const animateProgress = () => {
+            if (width < 100) {
+                width += Math.random() * 3 + 2;
+                progressBar.style.width = width + '%';
+                requestAnimationFrame(animateProgress);
+            }
+        };
+        animateProgress();
+    </script>
 </body>
 </html>
