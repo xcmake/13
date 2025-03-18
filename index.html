@@ -1,225 +1,213 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
+
+<!doctype html>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>现代风格个人网站</title>
+<meta charset="utf-8">
+<title>开心消消乐</title>
     <style>
-        /* 基础样式重置 */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        @charset "utf-8";
+/* CSS Document */
+body, p, h1, h2, h3, h4, h5, table, ul, li, form, input {
+	margin: 0;
+	padding: 0;
+	color: #000;
+	font-family: Arial, Helvetica, sans-serif;
+}
+body{
+	background:url(../images/bj.jpg) no-repeat center;
+	background-attachment:fixed;
+	font-size:12px;
+}
+a {
+	color:#FFF;
+	text-decoration: none;
+	border: none;
+	padding: 0;
+	margin: 0;
+}
+img {
+	border: 0;
+	margin: 0;
+	padding: 0;
+}
+ul, li {
+	list-style: none;
+	border: 0;
+	margin: 0;
+	padding: 0;
+}
+.clear {
+	clear: both;
+}
+.page{
+	width:960px;
+	margin:30px auto;
+	padding:20px;
+	overflow:hidden;
+	background-color:rgba(255,255,255,0.8);
+	border-radius:10px;
+	box-shadow:0 0 10px 5px #333;
+}
+.nav{
+	width:750px;
+	margin:20px auto;
+	overflow:hidden;
+}
+.nav li{
+	float:left;
+	width:100px;
+	margin:0 24px;
+	font-size:14px;
+	text-align:center;
+	line-height:35px;
+	border:solid #000 1px;
+	transition-property:color,background-color;
+	transition-duration:0.5s;
+}
+.nav li:hover{
+	color:#FFF;
+	background-color:#000;
+}
+.mid{
+	width:100%;
+	padding:35px 0;
+	overflow:hidden;
+}
+.foot{
+	text-align:center;
+	font-size:14px;
+	color:#333;
+	line-height:35px;
+	margin-top:10px;
+}
+h1{
+	text-align:center;
+	font-size:38px;
+	margin:50px 0;
+}
+h2{
+	text-indent:1em;
+	margin:40px 0;
+}
+.wz{
+	width:96%;
+	padding:2%;
+	text-align:center;
+	overflow:hidden;
+}
+.wz p{
+	line-height:35px;
+	text-indent:2em;
+	font-size:12px;
+	margin:20px 0;
+	text-align:left;
+}
+.wz h3{
+	text-align:left;
+	font-size:18px;
+	font-weight:normal;
+	margin-bottom:20px;
+}
+dl{
+	width:50%;
+	float:left;
+	margin-top:20px;
+}
+dl dt{
+	float:left;
+	font-weight:bolder;
+	color:#666;
+	width:100px;
+	text-align:center;
+	line-height:35px;
+	border-bottom:dashed #000 1px;
+}
+dl dd{
+	line-height:35px;
+	border-bottom:dashed #000 1px;
+}
+table{
+	border-top:solid #333 1px;
+	border-left:solid #333 1px;
+}
+th,td{
+	border-bottom:solid #333 1px;
+	border-right:solid #333 1px;
+}
+th{
+	background-color:#CCC;
+	line-height:30px;
+}
 
-        body {
-            font-family: 'Segoe UI', Roboto, Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background-color: #f5f7fb;
-        }
-
-        /* 主容器 */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* 导航栏样式 */
-        .navbar {
-            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
-            padding: 1rem 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: background 0.3s ease;
-        }
-
-        .navbar.scrolled {
-            background: rgba(255, 255, 255, 0.95);
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: #f1c40f;
-        }
-
-        /* 首屏英雄区 */
-        .hero {
-            height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)),
-                        url('https://source.unsplash.com/random/1920x1080') center/cover;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
-            padding-top: 60px; /* 为固定导航预留空间 */
-        }
-
-        .hero-content {
-            max-width: 600px;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
-            line-height: 1.1;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-        }
-
-        /* 动态按钮 */
-        .cta-button {
-            display: inline-block;
-            padding: 1rem 2rem;
-            background: #e74c3c;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .cta-button::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 100%;
-            background: linear-gradient(90deg, #f1c40f 0%, #ffd700 100%);
-            transform: translateY(100%);
-            transition: transform 0.3s ease;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-5px);
-        }
-
-        .cta-button:hover::after {
-            transform: translateY(0);
-        }
-
-        /* 响应式设计 */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .nav-links {
-                display: none;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-        }
-
-        /* 滚动指示器 */
-        .scroll-indicator {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 6px;
-            height: 6px;
-            background: #e74c3c;
-            border-radius: 50%;
-            opacity: 0;
-            animation: scroll 2s ease-in-out infinite;
-        }
-
-        @keyframes scroll {
-            0%, 100% { transform: translateY(0); opacity: 0.3; }
-            50% { transform: translateY(-10px); opacity: 1; }
-        }
     </style>
 </head>
+
 <body>
-    <nav class="navbar">
-        <a href="#" class="logo">YourBrand</a>
-        <ul class="nav-links">
-            <li><a href="#about">关于</a></li>
-            <li><a href="#services">服务</a></li>
-            <li><a href="#portfolio">作品集</a></li>
-            <li><a href="#contact">联系</a></li>
+	<div class="page">
+    	<ul class="nav">
+        	<a href="index.html"><li>主页</li></a>
+            <a href="sheding.html"><li>单位设定</li></a>
+            <a href="guize.html"><li>游戏规则</li></a>
+            <a href="daoju.html"><li>物品道具</li></a>
+            <a href="tese.html"><li>特色系统</li></a>
         </ul>
-    </nav>
-
-    <section class="hero">
-        <div class="container hero-content">
-            <h1>欢迎来到我的数字世界</h1>
-            <p>我是专业的网页设计师和开发者，专注于创建直观、优雅的数字体验。让我们一起打造您的下一个项目！</p>
-            <a href="#" class="cta-button">立即咨询</a>
+        <div class="banner"><img src="images/banner.jpg"></div>
+        <div class="mid">
+       	  <h1>开心消消乐</h1>
+            <div class="wz">
+            	<p>《开心消消乐》是一款乐元素研发的一款三消类休闲游戏。2013年8月，正式在网页版上线，在2014年8月推出了安卓版本和IOS版本。</p>
+            	<p>游戏以救村长为目的，玩家开始了一段开心的闯关旅程。</p>
+            	<p>在2015年《开心消消乐》荣获玩家最喜爱的移动单机游戏奖。</p>
+            	<p>2020年12月，乐元素《开心消消乐》公益特别活动，获得第十五届人民企业社会责任奖公益案例奖。</p>
+                <img src="images/t1.jpg">
+            	<dl>
+            	  <dt>中文名</dt>
+            	  <dd>开心消消乐</dd>
+            	  <dt>游戏类型</dt>
+            	  <dd>休闲益智</dd>
+            	  <dt>游戏平台</dt>
+            	  <dd>iOS、Android、PC</dd>
+            	  <dt>所属系列</dt>
+            	  <dd>休闲益智</dd>
+            	  <dt>地    区</dt>
+            	  <dd>中国</dd>
+            	  <dt>发行日期</dt>
+            	  <dd>2013年8月（PC版）</dd>
+                  <dt>-</dt>
+            	  <dd>2014年初（iOS版及Android版）</dd>
+            	  <dt>内容主题</dt>
+            	  <dd>消除类</dd>
+            	  <dt>玩家人数</dt>
+            	  <dd>单人</dd>
+          	  </dl>
+            	<dl>
+            	  <dt>游戏分级</dt>
+            	  <dd>4+（App Store）</dd>
+            	  <dt>最新版本</dt>
+            	  <dd>安卓版：1.73</dd>
+                  <dt>-</dt>
+            	  <dd>IOS版：1.1.25</dd>
+            	  <dt>发行阶段</dt>
+            	  <dd>正式版</dd>
+            	  <dt>结局数</dt>
+            	  <dd>无</dd>
+            	  <dt>主要角色</dt>
+            	  <dd>小熊、小鸡、青蛙、狐狸</dd>
+                  <dt>-</dt>
+                  <dd>、猫头鹰、河马、魔力鸟</dd>
+            	  <dt>IOS版大小</dt>
+            	  <dd>iPhone：121MB；iPad：127MB</dd>
+            	  <dt>系    统</dt>
+            	  <dd>android 2.2以上</dd>
+          	  </dl>
+            </div>
+            <h2>背景设定</h2>
+            <div class="wz">
+            	<p>一天晚上，天空中掉下一颗神奇的豌豆种子，正好落在了梦之森林的村长屋附近，种子落地后吸收了池塘的水分，迅速成长，一夜之间变成参天大藤蔓…… 第二天早上，村民们醒来后看到巨大的藤蔓都惊呆了，聚在一起议论纷纷。有人说他似乎看到村长的房子在高耸入云的藤蔓上，房子似乎还在上升，有人号召说应该爬上去救村长，玩家需要爬到藤曼顶部救出村长。</p>
+                <img src="images/t2.jpg">
+            </div>
         </div>
-    </section>
-
-    <div class="scroll-indicator"></div>
-
-    <script>
-        // 导航栏滚动效果
-        window.addEventListener('scroll', function() {
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
-
-        // 移动端菜单切换
-        const menuButton = document.createElement('button');
-        menuButton.textContent = '菜单';
-        menuButton.style.display = 'none';
-        document.querySelector('.nav-links').appendChild(menuButton);
-
-        window.addEventListener('resize', function() {
-            if (window.innerWidth <= 768) {
-                menuButton.style.display = 'block';
-                document.querySelector('.nav-links').style.display = 'none';
-            } else {
-                menuButton.style.display = 'none';
-                document.querySelector('.nav-links').style.display = 'flex';
-            }
-        });
-
-        menuButton.addEventListener('click', function() {
-            document.querySelector('.nav-links').style.display = 
-                document.querySelector('.nav-links').style.display === 'none' ? 'flex' : 'none';
-        });
-    </script>
+        <div class="foot">Copyright © 开心消消乐</div>
+    </div>
 </body>
 </html>
